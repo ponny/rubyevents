@@ -64,8 +64,8 @@ name with `gh api users/<handle>`.
 | Happened, no recording expected | `not_recorded` |
 | Happened, recording expected but not up yet | talks `not_published` — the next round picks them up |
 | Happened, recording published | parent `children`, each talk `youtube` with `published_at`, `video_id` and the five thumbnails |
-| Cancelled | `status: "cancelled"`, `video_provider: "not_recorded"`, title suffixed `(Cancelled)` |
-| Postponed into another month | cancel the original month, say so in its description, and move the talk to the new month keeping `old_id` (below) |
+| Cancelled | Remove the entry — a meetup that did not happen is not worth showing. List its id under `removed_talk_ids` (below) |
+| Postponed into another month | Remove the original month and move its talks to the new month, keeping `old_id` (below) |
 
 Add roughly three months of announced meetups. Sydney publishes recurring
 placeholders a year out — do not import them all.
@@ -120,9 +120,16 @@ id and carry the previous one so the production record migrates:
       old_id: "yuri-vyatkin-auckland-ruby-meetup-august-2026"
 ```
 
-Deleting a month or a talk outright instead needs its id listed under
-`removed_talk_ids` in the series' `event.yml`, or `bin/rails validate:videos`
-fails.
+Removing a month or a talk needs its id listed under `removed_talk_ids` in the
+series' `event.yml`, or `bin/rails validate:videos` fails — a vanished id is
+usually an unrecorded rename, and production still knows the talk under it. The
+next seed then deletes the record:
+
+```yaml
+# data/ruby-perth/ruby-perth-meetup/event.yml
+removed_talk_ids:
+  - "ruby-perth-meetup-august-2026"
+```
 
 ## 4. Speakers
 

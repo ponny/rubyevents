@@ -142,19 +142,6 @@
       speakers:
         - Rodolfo Leyes
 
-- id: "auckland-ruby-meetup-august-2026"
-  title: "Auckland Ruby Meetup August 2026 (Cancelled)"
-  event_name: "Auckland Ruby Meetup August 2026"
-  date: "2026-08-24"
-  status: "cancelled"
-  video_provider: "not_recorded"
-  video_id: "auckland-ruby-meetup-august-2026"
-  description: |-
-    Postponed to 21 September 2026.
-    Hosted at Paloma, 77 Cook Street, Auckland.
-    https://www.meetup.com/aucklandruby/events/312963612/
-  talks: []
-
 - id: "auckland-ruby-meetup-september-2026"
   title: "Auckland Ruby Meetup September 2026"
   event_name: "Auckland Ruby Meetup September 2026"
